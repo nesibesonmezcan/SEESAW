@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+section.informationPage {
+    border: solid 1px;
+    width: 100%;
+    background-color: blueviolet;
+    overflow: auto;
+}
+
+div .information {
+    padding: 3px;
+    width: 100%;
+
+}
+
+div.information p.info {
+    background-color: aliceblue;
+    font-size: large;
+    font-weight: 200;
+    padding: 5px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+
+}

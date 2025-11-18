@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    padding-top: 20px;
+}
+
+
+div .button {
+    display: flex;
+    padding-top: 5px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+
+}
+
+div .button div {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+div .button div.page {
+    padding: 5px;
+    font-weight: 600;
+    font-size: larger;
+    margin: 10px;
+    background-color: aliceblue;
+}
+
+div .button div.left {
+    display: flex;
+    flex-direction: column;
+    padding: 15;
+    align-items: center;
+    justify-content: center;
+
+}
+
+div .button div.left p {
+    font-weight: 100;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
