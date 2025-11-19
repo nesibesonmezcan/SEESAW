@@ -16,7 +16,7 @@ const state = {
   angle: 30,
   totalLeftPouchWeight: 0,
   totalRightPouchWeight: 0,
-  randomWeight: 1,
+  randomWeight: Math.floor(Math.random() * 10) + 1,
 };
 
 function saveState() {
@@ -29,20 +29,7 @@ function loadState() {
 
   try {
     const loaded = JSON.parse(saved);
-
-    const schema = {
-      objects: [],
-      angle: 0,
-      totalLeftPouchWeight: 0,
-      totalRightPouchWeight: 0,
-      randomWeight: 0,
-    };
-    Object.keys(state).forEach((key) => {
-      const defaultValue = schema[key];
-      const loadedValue = loaded[key];
-
-      state[key] = loadedValue ?? defaultValue;
-    });
+    Object.assign(state,loaded)
 
     objectPurse();
     calculate();
@@ -61,26 +48,26 @@ const slopeAngle = document.getElementById("slope-angle");
 const objectsLayer = document.getElementById("objects-layer");
 const information = document.getElementById("information");
 
-const lineMiddle = 200;
+let lineMiddle ;
 const maxAngle = 30;
 
 loadState();
 
 seesawPanel.addEventListener("click", (e) => {
   const rectangle = seesawPanel.getBoundingClientRect();
+  lineMiddle=rectangle.width/2
   const clickLine = e.clientX - rectangle.left;
   const side = clickLine < lineMiddle ? "left" : "right";
   const absValue = Math.abs(clickLine - lineMiddle);
 
   const newObject = {
-    randomWeight: state.randomWeight,
+    randomWeight: Math.floor(Math.random() * 10) + 1,
     side: side,
     distance: absValue,
     xPos: clickLine,
   };
 
   state.objects.push(newObject);
-  state.randomWeight = Math.floor(Math.random() * 10) + 1;
 
   objectPurse();
   calculate();
@@ -106,9 +93,7 @@ function calculate() {
 
     const logItem = document.createElement("p");
     logItem.className = "info";
-    logItem.textContent = `${obj.randomWeight} kg ,placed on the ${
-      obj.side
-    } side ${obj.distance}px from the center`;
+    logItem.textContent = `${obj.randomWeight} kg ,placed on the ${obj.side} side ${obj.distance}px from the center`;
     information.prepend(logItem);
   });
 
@@ -117,15 +102,15 @@ function calculate() {
   state.angle = Math.max(-maxAngle, Math.min(maxAngle, angle));
 
   seesawLine.style.transform = `translateY(-50%) rotate(${state.angle}deg)`;
-  leftWeigth.textContent = `${state.totalLeftPouchWeight.toFixed(1)} kg`;
-  rightWeigth.textContent = `${state.totalRightPouchWeight.toFixed(1)} kg`;
+  leftWeigth.textContent = `${state.totalLeftPouchWeight} kg`;
+  rightWeigth.textContent = `${state.totalRightPouchWeight} kg`;
   randomWeigth.textContent = `${state.randomWeight} kg`;
   slopeAngle.textContent = `${state.angle.toFixed(1)}°`;
 }
 
 function objectPurse() {
   objectsLayer.innerHTML = "";
-  state.objects.forEach((obj,index) => {
+  state.objects.forEach((obj, index) => {
     const elemnt = document.createElement("div");
     elemnt.className = "objectPurses";
     elemnt.style.left = `${obj.xPos}px`;
@@ -133,8 +118,7 @@ function objectPurse() {
     elemnt.style.width = `${size}px`;
     elemnt.style.height = `${size}px`;
     elemnt.style.top = "50%";
-    elemnt.style.backgroundColor =
-      rainbowColors[index%rainbowColors.length];
+    elemnt.style.backgroundColor = rainbowColors[index % rainbowColors.length];
     objectsLayer.appendChild(elemnt);
     elemnt.innerHTML = obj.randomWeight;
   });
@@ -145,6 +129,5 @@ resetButton.addEventListener("click", () => {
   objectPurse();
   calculate();
   seesawLine.style.transform = "translateY(-50%) rotate(0deg)";
-
   localStorage.removeItem("seesawState");
 });

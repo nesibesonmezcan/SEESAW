@@ -36,7 +36,7 @@ main .container {
 
 main .seesaw {
     width: 100%;
-    height: 25rem;
+    height: 40rem;
     background-color: aliceblue;
     overflow: hidden;
     display: flex;
@@ -44,8 +44,7 @@ main .seesaw {
     align-items: center;
 }
 
-main div.seesaw div.group1 {
-
+main div.seesaw div.seesaw_panel {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,10 +52,9 @@ main div.seesaw div.group1 {
     height: 100%;
     background-color: aliceblue;
     position: relative;
-
 }
 
-main div.seesaw div.group1>.line {
+main div.seesaw div.seesaw_panel>.line {
     padding: 0;
     margin: 0;
     width: 80%;
@@ -66,15 +64,20 @@ main div.seesaw div.group1>.line {
     transition: transform 2s ease-out;
 }
 
-main div.seesaw div.group1 .triangle {
+main div.seesaw div.seesaw_panel .triangle {
     width: 0;
     height: 0;
-    padding-top: -px;
     border-bottom: 40px solid rgb(2, 2, 3);
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
 }
 
+@media (max-width: 768px) {
+   
+main .container {
+    width: 100%;
+}
+}
 
 div .panels {
     display: flex;
@@ -82,7 +85,6 @@ div .panels {
     flex-wrap: wrap;
     display: flex;
     justify-content: center;
-
 }
 
 div .panels div {
@@ -98,7 +100,7 @@ div .panels div.page {
     background-color: aliceblue;
 }
 
-div .panels div.left {
+div .panels>div {
     display: flex;
     flex-direction: column;
     padding: 15;
@@ -106,11 +108,7 @@ div .panels div.left {
     justify-content: center;
 }
 
-div .panels div.left p {
-    font-weight: 100;
-}
-
-section>button {
+section>.reset_button {
     padding: 15px;
     margin: 10px;
     font-size: medium;
@@ -119,16 +117,16 @@ section>button {
 
 div .information {
     border: solid 1px;
-    background-color: rgba(255, 255, 254, 0.816);
+    background-color: aliceblue;
     width: 100%;
     padding: 3px;
-    height: 170px;
+    height: 25%;
     overflow: auto;
     display: block;
 }
 
 div.information p.info {
-    background-color: aliceblue;
+    background-color: rgb(221, 234, 245);
     font-size: medium;
     font-weight: 300;
     padding: 5px;
@@ -136,7 +134,6 @@ div.information p.info {
     margin-bottom: 2px;
     border-radius: 2px;
     border-left: 3px solid;
-
 }
 
 .objectPurses {
