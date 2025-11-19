@@ -1,10 +1,55 @@
+const rainbowColors = [
+  "#FF4D4D",
+  "#FF8A33",
+  "#FFD93D",
+  "#6EEB83",
+  "#3FE0D0",
+  "#4DC6FF",
+  "#4B6BFF",
+  "#A066FF",
+  "#FF66C4",
+  "#FF3FAF",
+];
+
 const state = {
   objects: [],
   angle: 30,
   totalLeftPouchWeight: 0,
   totalRightPouchWeight: 0,
-  randomWeight: Math.floor(Math.random() * 10) + 1,
+  randomWeight: 1,
 };
+
+function saveState() {
+  localStorage.setItem("seesawState", JSON.stringify(state));
+}
+
+function loadState() {
+  const saved = localStorage.getItem("seesawState");
+  if (!saved) return;
+
+  try {
+    const loaded = JSON.parse(saved);
+
+    const schema = {
+      objects: [],
+      angle: 0,
+      totalLeftPouchWeight: 0,
+      totalRightPouchWeight: 0,
+      randomWeight: 0,
+    };
+    Object.keys(state).forEach((key) => {
+      const defaultValue = schema[key];
+      const loadedValue = loaded[key];
+
+      state[key] = loadedValue ?? defaultValue;
+    });
+
+    objectPurse();
+    calculate();
+  } catch (e) {
+    console.error("Seesaw state yüklenirken hata:", e);
+  }
+}
 
 const seesawPanel = document.getElementById("seesaw-panel");
 const seesawLine = document.getElementById("seesaw-line");
@@ -18,6 +63,8 @@ const information = document.getElementById("information");
 
 const lineMiddle = 200;
 const maxAngle = 30;
+
+loadState();
 
 seesawPanel.addEventListener("click", (e) => {
   const rectangle = seesawPanel.getBoundingClientRect();
@@ -34,8 +81,10 @@ seesawPanel.addEventListener("click", (e) => {
 
   state.objects.push(newObject);
   state.randomWeight = Math.floor(Math.random() * 10) + 1;
+
   objectPurse();
   calculate();
+  saveState();
 });
 
 function calculate() {
@@ -54,9 +103,12 @@ function calculate() {
       rightTorq += torq;
       state.totalRightPouchWeight += obj.randomWeight;
     }
+
     const logItem = document.createElement("p");
     logItem.className = "info";
-    logItem.textContent = `${obj.randomWeight} ropped on ${obj.side} from center`;
+    logItem.textContent = `${obj.randomWeight} kg ,placed on the ${
+      obj.side
+    } side ${obj.distance}px from the center`;
     information.prepend(logItem);
   });
 
@@ -73,14 +125,18 @@ function calculate() {
 
 function objectPurse() {
   objectsLayer.innerHTML = "";
-  state.objects.forEach((obj) => {
+  state.objects.forEach((obj,index) => {
     const elemnt = document.createElement("div");
     elemnt.className = "objectPurses";
     elemnt.style.left = `${obj.xPos}px`;
+    const size = 20 + obj.randomWeight * 4;
+    elemnt.style.width = `${size}px`;
+    elemnt.style.height = `${size}px`;
     elemnt.style.top = "50%";
-    objectsLayer.appendChild(elemnt);  
-      elemnt.innerHTML=state.randomWeight
-
+    elemnt.style.backgroundColor =
+      rainbowColors[index%rainbowColors.length];
+    objectsLayer.appendChild(elemnt);
+    elemnt.innerHTML = obj.randomWeight;
   });
 }
 
@@ -89,4 +145,6 @@ resetButton.addEventListener("click", () => {
   objectPurse();
   calculate();
   seesawLine.style.transform = "translateY(-50%) rotate(0deg)";
+
+  localStorage.removeItem("seesawState");
 });
