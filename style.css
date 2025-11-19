@@ -24,6 +24,8 @@ main .container {
     background-color: rgb(136, 134, 138);
     padding-bottom: 15px;
     border-radius: 5px;
+    padding: 15px;  
+
 }
 
 .container>div {
@@ -42,6 +44,7 @@ main .seesaw {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: aqua;
 }
 
 main div.seesaw div.group1 {
@@ -52,9 +55,11 @@ main div.seesaw div.group1 {
     flex-direction: column;
     height: 100%;
     background-color: aliceblue;
+     position: relative;
+
 }
 
-main div.seesaw div.group1>.line {
+main div.seesaw div.group1>.line {   
     padding: 0;
     margin: 0;
     width: 80%;
@@ -114,7 +119,9 @@ section>button {
     border-radius: 1px;
 }
 
-div .information { border: solid 1px;
+div .information {
+    border: solid 1px;
+    background-color: rgb(217, 216, 213);
     width: 100%;
     padding: 3px;
     width: 100%;
@@ -131,4 +138,16 @@ div.information p.info {
     margin-bottom: 2px;
     border-radius: 10px;
 
+}
+.objectPurses{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: pink;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }

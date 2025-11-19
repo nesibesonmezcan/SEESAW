@@ -11,43 +11,37 @@
     <main>
       <div class="container">
         <div class="panels">
-          <div class="page left">
+          <div class="page left" id="">
             <p>Left Weigth</p>
-            <h4>15.0 Kg</h4>
+            <h4 id="left-weight"></h4>
           </div>
           <div class="page left">
-            <p>Left Weigth</p>
-            <h4>15.0 Kg</h4>
+            <p>Random Weigth</p>
+            <h4 id="random-weight">  Kg</h4>
           </div>
           <div class="page left">
-            <p>Left Weigth</p>
-            <h4>15.0 Kg</h4>
+            <p>Slope Angle</p>
+            <h4 id="slope-angle"></h4>
           </div>
           <div class="page left">
-            <p>Left Weigth</p>
-            <h4>15.0 Kg</h4>
+            <p>Right Weigth</p>
+            <h4 id="rigth-weight"></h4>
           </div>
         </div>
         <div class="seesaw">
-          <div id="seesaw" class="group1">
-            <span id="seesaw" class="line"></span>
-            <span class="triangle"></span>
+          <div id="seesaw-panel" class="group1">
+            <div id="seesaw-line" class="line"></div>            <div id="objects-layer" style="transition: transform 0.6s ease-out;"></div>
+
+            <div class="triangle"></div>
+
           </div>
         </div>
         <section>
-          <button onclick="">reset</button>
+          <button id="reset-button">reset</button>
           <button>pause</button>
         </section>
-          <div class="information">
-            <p class="info">6kg dropped on right side at 183px from center</p>
-            <p class="info">6kg dropped on right side at 183px from center</p>
-            <p class="info">6kg dropped on right side at 183px from center</p>
-            <p class="info">6kg dropped on right side at 183px from center</p>
-            <p class="info">6kg dropped on right side at 183px from center</p>
-            <p class="info">6kg dropped on right side at 183px from center</p>
-            <p class="info">6kg dropped on right side at 183px from center</p>
-            <p class="info">6kg dropped on right side at 183px from center</p>
-            <p class="info">6kg dropped on right side at 183px from center</p>
+          <div class="information" id="information">
+
           </div>
       </div>
     </main>
