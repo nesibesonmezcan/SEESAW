@@ -16,7 +16,7 @@ const state = {
   angle: 30,
   totalLeftPouchWeight: 0,
   totalRightPouchWeight: 0,
-  randomWeight:null,
+  randomWeight: null,
 };
 
 function saveState() {
@@ -29,7 +29,7 @@ function loadState() {
 
   try {
     const loaded = JSON.parse(saved);
-    Object.assign(state,loaded)
+    Object.assign(state, loaded);
     objectPurse();
     calculate();
   } catch (e) {
@@ -47,17 +47,17 @@ const slopeAngle = document.getElementById("slope-angle");
 const objectsLayer = document.getElementById("objects-layer");
 const information = document.getElementById("information");
 
-let lineMiddle ;
+let lineMiddle;
 const maxAngle = 30;
 
 loadState();
 
 seesawPanel.addEventListener("click", (e) => {
   const rectangle = seesawPanel.getBoundingClientRect();
-  lineMiddle=rectangle.width/2
+  lineMiddle = rectangle.width / 2;
   const clickLine = e.clientX - rectangle.left;
   const side = clickLine < lineMiddle ? "left" : "right";
-  const absValue = Math.abs(clickLine - lineMiddle);  
+  const absValue = Math.abs(clickLine - lineMiddle);
 
   const newObject = {
     randomWeight: Math.floor(Math.random() * 10) + 1,
@@ -92,8 +92,10 @@ function calculate() {
 
     const logItem = document.createElement("p");
     logItem.className = "info";
-    logItem.textContent = `${obj.randomWeight} kg , placed on the ${obj.side} side ${obj.distance.toFixed(1)} px from the center`; 
-     randomWeight.textContent = `${obj.randomWeight} kg`;
+    logItem.textContent = `${obj.randomWeight} kg , placed on the ${
+      obj.side
+    } side ${obj.distance.toFixed(1)} px from the center`;
+    randomWeight.textContent = `${obj.randomWeight} kg`;
     information.prepend(logItem);
   });
 
@@ -106,7 +108,7 @@ function calculate() {
   slopeAngle.textContent = `${state.angle.toFixed(1)}°`;
 }
 
-function objectPurse() {
+function objectPurse() {ß
   objectsLayer.innerHTML = "";
   state.objects.forEach((obj, index) => {
     const elemnt = document.createElement("div");
