@@ -1,31 +1,33 @@
 <!DOCTYPE <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>SeesawSimulation</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link href="style.css" rel="stylesheet" />
-    <title>SeesawSimulation</title>
   </head>
   <body>
     <main>
       <div class="container">
         <div class="panels">
-          <div class="page left" id="">
+          <div class="panel " id="">
             <p>Total Left Weigth</p>
-            <h4 id="left-weight"></h4>
+            <h4 id="left-weight">0.0 Kg</h4>
           </div>
-          <div class="page left">
-            <p>Random Weigth</p>
-            <h4 id="random-weight"></h4>
+          <div class="panel ">
+            <p>Next Weigth</p>
+            <h4 id="random-weight">0.0 Kg</h4>
           </div>
-          <div class="page left">
+          <div class="panel ">
             <p>Slope Angle</p>
-            <h4 id="slope-angle"></h4>
+            <h4 id="slope-angle">0.0°</h4>
           </div>
-          <div class="page left">
+          <div class="panel ">
             <p>Total Right Weigth</p>
-            <h4 id="rigth-weight"></h4>
+            <h4 id="rigth-weight">0.0 Kg</h4>
           </div>
         </div>
         <div class="seesaw">
@@ -37,7 +39,9 @@
           </div>
         </div>
         <section>
-          <button id="reset-button" class="reset_button">reset</button>
+          <button id="reset-button" class="reset_button">
+            <i class="fas fa-sync-alt"></i>Reset
+          </button>
         </section>
         <div class="information" id="information"></div>
       </div>

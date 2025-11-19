@@ -16,7 +16,7 @@ const state = {
   angle: 30,
   totalLeftPouchWeight: 0,
   totalRightPouchWeight: 0,
-  randomWeight: Math.floor(Math.random() * 10) + 1,
+  randomWeight:null,
 };
 
 function saveState() {
@@ -30,7 +30,6 @@ function loadState() {
   try {
     const loaded = JSON.parse(saved);
     Object.assign(state,loaded)
-
     objectPurse();
     calculate();
   } catch (e) {
@@ -43,7 +42,7 @@ const seesawLine = document.getElementById("seesaw-line");
 const resetButton = document.getElementById("reset-button");
 const leftWeigth = document.getElementById("left-weight");
 const rightWeigth = document.getElementById("rigth-weight");
-const randomWeigth = document.getElementById("random-weight");
+const randomWeight = document.getElementById("random-weight");
 const slopeAngle = document.getElementById("slope-angle");
 const objectsLayer = document.getElementById("objects-layer");
 const information = document.getElementById("information");
@@ -58,7 +57,7 @@ seesawPanel.addEventListener("click", (e) => {
   lineMiddle=rectangle.width/2
   const clickLine = e.clientX - rectangle.left;
   const side = clickLine < lineMiddle ? "left" : "right";
-  const absValue = Math.abs(clickLine - lineMiddle);
+  const absValue = Math.abs(clickLine - lineMiddle);  
 
   const newObject = {
     randomWeight: Math.floor(Math.random() * 10) + 1,
@@ -93,18 +92,17 @@ function calculate() {
 
     const logItem = document.createElement("p");
     logItem.className = "info";
-    logItem.textContent = `${obj.randomWeight} kg ,placed on the ${obj.side} side ${obj.distance}px from the center`;
+    logItem.textContent = `${obj.randomWeight} kg , placed on the ${obj.side} side ${obj.distance.toFixed(1)} px from the center`; 
+     randomWeight.textContent = `${obj.randomWeight} kg`;
     information.prepend(logItem);
   });
 
   let angle = (rightTorq - leftTorq) / 10;
 
   state.angle = Math.max(-maxAngle, Math.min(maxAngle, angle));
-
   seesawLine.style.transform = `translateY(-50%) rotate(${state.angle}deg)`;
   leftWeigth.textContent = `${state.totalLeftPouchWeight} kg`;
   rightWeigth.textContent = `${state.totalRightPouchWeight} kg`;
-  randomWeigth.textContent = `${state.randomWeight} kg`;
   slopeAngle.textContent = `${state.angle.toFixed(1)}°`;
 }
 

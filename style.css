@@ -59,7 +59,7 @@ main div.seesaw div.seesaw_panel>.line {
     margin: 0;
     width: 80%;
     min-width: 400px;
-    border: 5px solid #7b1212;
+    border: 5px solid #65687d;
     box-sizing: border-box;
     transition: transform 2s ease-out;
 }
@@ -73,10 +73,10 @@ main div.seesaw div.seesaw_panel .triangle {
 }
 
 @media (max-width: 768px) {
-   
-main .container {
-    width: 100%;
-}
+
+    main .container {
+        width: 100%;
+    }
 }
 
 div .panels {
@@ -92,7 +92,7 @@ div .panels div {
     padding: 10px;
 }
 
-div .panels div.page {
+div .panels div.panel {
     padding: 5px;
     font-weight: 300;
     font-size: medium;
@@ -109,10 +109,18 @@ div .panels>div {
 }
 
 section>.reset_button {
-    padding: 15px;
+    padding: 10px;
     margin: 10px;
     font-size: medium;
     border-radius: px;
+    font-size: large;
+    border-radius: 9px;
+    border: 1px solid #2a2828;
+    background-color: #65687d;
+}
+
+section>.reset_button>i {
+    width: 30px;
 }
 
 div .information {
