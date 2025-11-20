@@ -108,7 +108,7 @@ function calculate() {
   slopeAngle.textContent = `${state.angle.toFixed(1)}°`;
 }
 
-function objectPurse() {ß
+function objectPurse() {
   objectsLayer.innerHTML = "";
   state.objects.forEach((obj, index) => {
     const elemnt = document.createElement("div");
@@ -131,3 +131,4 @@ resetButton.addEventListener("click", () => {
   seesawLine.style.transform = "translateY(-50%) rotate(0deg)";
   localStorage.removeItem("seesawState");
 });
+ß
